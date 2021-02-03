@@ -8,7 +8,7 @@ namespace DQU
     /// <summary>
     /// Marks the initial position of the Player within a Level.
     /// </summary>
-    public class SpawnPlayer : SpawnPoint
+    public class SpawnPlayer : SpawnPointBase
     {
         [SerializeField]
         private Transform _prefab;

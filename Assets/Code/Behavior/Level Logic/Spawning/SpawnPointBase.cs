@@ -6,7 +6,7 @@ namespace DQU
     /// <summary>
     /// Marks the position at which some Prefab can be spawned.
     /// </summary>
-    public abstract class SpawnPoint : MonoBehaviour
+    public abstract class SpawnPointBase : MonoBehaviour
     {
         /// <summary>Instantiate the Prefab at this Spawn Point's position.</summary>
         public abstract void Spawn();
