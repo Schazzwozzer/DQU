@@ -34,10 +34,13 @@ namespace DQU
 
         private void OnTriggerEnter2D( Collider2D collision )
         {
-            EnterRoom();
+            if( collision.gameObject.layer == LayerHelper.Player )
+                EnterRoom();
         }
 
-
+        /// <summary>
+        /// Call when the Player enters this Room.
+        /// </summary>
         private void EnterRoom()
         {
             EventManager.Instance.Raise( enterEvent.Configure( this ) );

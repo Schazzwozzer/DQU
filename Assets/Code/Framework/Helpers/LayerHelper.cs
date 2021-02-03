@@ -17,6 +17,7 @@ namespace DQU
 
         // DQU layers
         public static int NoCollision   = LayerMask.NameToLayer( "NoCollision" );
+        public static int Player        = LayerMask.NameToLayer( "Player" );
 
 
         /// <summary>

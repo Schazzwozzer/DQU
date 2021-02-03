@@ -9,7 +9,8 @@ namespace DQU
     public abstract class SpawnPointBase : MonoBehaviour
     {
         /// <summary>Instantiate the Prefab at this Spawn Point's position.</summary>
-        public abstract void Spawn();
+        /// <param name="parent">The parent Transform for the new instance.</param>
+        public abstract void Spawn( Transform parent );
 
     }
 }
