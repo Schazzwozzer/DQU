@@ -47,8 +47,8 @@ Shader "DQU/Sprite"
             half3 _ColorHigh, _ColorLow;
             half3 _ColorShadow = half3( 0.18, 0.2, 0.28 );
 
-            #include "Assets/Shaders/Shader Includes/Vertex_Sprite.hlsl"
-            #include "Assets/Shaders/Shader Includes/Fragment_Sprite.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Vertex_Sprite.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Fragment_Sprite.hlsl"
 
             ENDHLSL
         }
