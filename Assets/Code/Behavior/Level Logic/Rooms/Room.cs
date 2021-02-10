@@ -8,6 +8,10 @@ namespace DQU
 {
     public class Room : MonoBehaviour
     {
+        // Used to look up the room's text description.
+        [SerializeField, Range(0,100)]
+        private int _roomNumber;
+
         private CameraTrack _cameraTrack;
         public CameraTrack CameraTrack { get { return _cameraTrack; } }
 
@@ -18,6 +22,8 @@ namespace DQU
 
         private BoxCollider2D _collider;
         private RoomTransition[] _transitions;
+        [SerializeField]
+        private Renderer[] _roomExclusiveArt;
 
 
         private void Awake()
@@ -49,7 +55,9 @@ namespace DQU
             else
                 EventManager.Instance.RemoveListener<RoomEnteredEvent>( OnRoomEntered );
 
-            // TO DO: Activate all room-specific art.
+            for( int i = 0; i < _roomExclusiveArt.Length; ++i )
+                if( _roomExclusiveArt[i] != null )
+                    _roomExclusiveArt[i].enabled = active;
         }
 
         private void OnRoomEntered( RoomEnteredEvent e )

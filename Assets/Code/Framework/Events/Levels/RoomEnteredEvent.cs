@@ -20,7 +20,7 @@ namespace DQU.Events
 #if DEBUG
         public override void Log()
         {
-            UnityEngine.Debug.Log( "EVENT: " + ToString() );
+            //UnityEngine.Debug.Log( "EVENT: " + ToString() );
         }
 #endif
 
