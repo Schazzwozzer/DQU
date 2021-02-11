@@ -1,8 +1,8 @@
 #ifndef FRAGMENT_SPRITE_INCLUDED
 #define FRAGMENT_SPRITE_INCLUDED
 
-#include "Assets/Shaders/Library/Dither.hlsl"
-#include "Assets/Shaders/Library/Official Edits/Lighting.hlsl"
+#include "Assets/Code/Shaders/Library/Dither.hlsl"
+#include "Assets/Code/Shaders/Library/Official Edits/Lighting.hlsl"
 
 half4 FragmentProgram_Sprite( Varyings i ) : SV_Target
 {
