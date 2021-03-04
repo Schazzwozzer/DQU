@@ -20,8 +20,9 @@ namespace DQU
 
         private void FixedUpdate()
         {
-            _rigidbody.MovePosition( transform.position + 
-                (Vector3)CurrentMovement * _movementSpeed * Time.fixedDeltaTime );
+            _rigidbody.AddForce(
+                CurrentMovement * _movementSpeed, 
+                ForceMode2D.Force );
         }
 
     }
