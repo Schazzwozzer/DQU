@@ -10,7 +10,11 @@ namespace DQU
     {
         // Used to look up the room's text description.
         [SerializeField, Range(0,100)]
+        [SerializeField, HideInInspector, Range(0,100)]
         private int _roomNumber;
+        public int RoomNumber { get { return _roomNumber; } }
+        [SerializeField]
+        private RoomDescriptionLayout _descriptionTextLayout;
 
         private CameraTrack _cameraTrack;
         public CameraTrack CameraTrack { get { return _cameraTrack; } }
@@ -24,6 +28,9 @@ namespace DQU
         private RoomTransition[] _transitions;
         [SerializeField]
         private Renderer[] _roomExclusiveArt;
+
+        [SerializeField]
+        public UnityEngine.Events.UnityEvent OnRoomEnter;
 
 
         private void Awake()
@@ -57,7 +64,9 @@ namespace DQU
 
             for( int i = 0; i < _roomExclusiveArt.Length; ++i )
                 if( _roomExclusiveArt[i] != null )
-                    _roomExclusiveArt[i].enabled = active;
+                    _roomExclusiveArt[i].gameObject.SetActive( active );
+
+            OnRoomEnter.Invoke();
         }
 
         private void OnRoomEntered( RoomEnteredEvent e )
