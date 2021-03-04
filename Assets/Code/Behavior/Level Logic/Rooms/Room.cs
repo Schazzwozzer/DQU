@@ -9,10 +9,13 @@ namespace DQU
     public class Room : MonoBehaviour
     {
         // Used to look up the room's text description.
-        [SerializeField, Range(0,100)]
         [SerializeField, HideInInspector, Range(0,100)]
         private int _roomNumber;
         public int RoomNumber { get { return _roomNumber; } }
+
+        [SerializeField, HideInInspector] private bool _clampToBoundsX = true;
+        [SerializeField, HideInInspector] private bool _clampToBoundsY = true;
+
         [SerializeField]
         private RoomDescriptionLayout _descriptionTextLayout;
 
@@ -68,6 +71,47 @@ namespace DQU
 
             OnRoomEnter.Invoke();
         }
+
+
+        /// <summary>
+        /// Constrain the camera's position so that the camera's
+        /// view does not extend outside of the Room's bounds.
+        /// </summary>
+        public Vector2 ClampViewToRoomBounds( Vector2 goalPosition, Camera camera )
+        {
+            float halfCameraWidth = camera.orthographicSize * camera.aspect;
+
+            float xPos, yPos;
+            Vector2 positionalMin = new Vector2(
+                _collider.bounds.min.x + halfCameraWidth,
+                _collider.bounds.min.y + camera.orthographicSize );
+            Vector2 positionalMax = new Vector2(
+                _collider.bounds.max.x - halfCameraWidth,
+                _collider.bounds.max.y - camera.orthographicSize );
+
+            if( _clampToBoundsX )
+            {
+                // If the camera's view exceeds the Room's bounds, just use the bounds' center position.
+                if( positionalMin.x > positionalMax.x )
+                    positionalMin.x = positionalMax.x = _collider.bounds.center.x;
+                xPos = Mathf.Clamp( goalPosition.x, positionalMin.x, positionalMax.x );
+            }
+            else
+                xPos = goalPosition.x;
+
+            if( _clampToBoundsY )
+            {
+                // As above, check if camera view exceeds Room bounds.
+                if( positionalMin.y > positionalMax.y )
+                    positionalMin.y = positionalMax.y = _collider.bounds.center.y;
+                yPos = Mathf.Clamp( goalPosition.y, positionalMin.y, positionalMax.y );
+            }
+            else
+                yPos = goalPosition.y;
+
+            return new Vector2( xPos, yPos );
+        }
+
 
         private void OnRoomEntered( RoomEnteredEvent e )
         {
