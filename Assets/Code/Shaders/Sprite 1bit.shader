@@ -9,6 +9,9 @@ Shader "DQU/Sprite"
         _ColorLow("Dark Color", Color) = (0.4, 0.4, 0.4, 1.0)
         _ColorShadow("Shadow Color", Color) = (0.15, 0.15, 0.3, 1.0)
 
+        _NoiseSize("Noise Size", Float) = 1.0
+        _NoiseOffset("Noise Offset", Vector) = (0, 0, 0, 0)
+
         // Legacy properties. They're here so that materials using this shader can gracefully fallback to the legacy sprite shader.
         [HideInInspector] _Color("Tint", Color) = (1,1,1,1)
         [HideInInspector] _RendererColor("RendererColor", Color) = (1,1,1,1)
