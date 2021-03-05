@@ -97,6 +97,8 @@ namespace DQU.GUI
                     else if( !StringHelper.IsSpace( c ) )
                         yield return perCharYield;
                 }
+
+                ++charactersRevealed;
             }
         }
 
