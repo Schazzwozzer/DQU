@@ -32,6 +32,10 @@ namespace DQU
         [SerializeField]
         private Renderer[] _roomExclusiveArt;
 
+        /// <summary>
+        /// Used to activate the <see cref="ShowRoomDescription"/> 
+        /// component, as well as call any other optional methods.
+        /// </summary>
         [SerializeField]
         public UnityEngine.Events.UnityEvent OnRoomEnter;
 
@@ -52,7 +56,8 @@ namespace DQU
         }
 
         /// <summary>
-        /// Toggle all of this room's Transitions.
+        /// Toggle the Room's art and transition triggers, and subscribe 
+        /// (or unsubscribe) to <see cref="RoomEnteredEvent"/>s.
         /// </summary>
         private void Activate( bool active )
         {
@@ -68,8 +73,6 @@ namespace DQU
             for( int i = 0; i < _roomExclusiveArt.Length; ++i )
                 if( _roomExclusiveArt[i] != null )
                     _roomExclusiveArt[i].gameObject.SetActive( active );
-
-            OnRoomEnter.Invoke();
         }
 
 
@@ -127,6 +130,8 @@ namespace DQU
             EventManager.Instance.Raise( enterEvent.Configure( this ) );
 
             Activate( true );
+
+            OnRoomEnter.Invoke();
         }
 
 

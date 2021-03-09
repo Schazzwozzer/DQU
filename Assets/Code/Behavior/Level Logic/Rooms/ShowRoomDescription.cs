@@ -12,7 +12,7 @@ namespace DQU
         private LocalizedString _descriptionString;
 
         [SerializeField]
-        private float _delayInSeconds;
+        private float _delayInSeconds = 0.4f;
 
         [SerializeField]
         private RoomDescriptionLayout _textLayout;

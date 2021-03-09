@@ -27,6 +27,8 @@ namespace DQU.GUI
         [SerializeField] private LocalizeStringEvent _localizeComponent;
         [SerializeField] private RevealText _revealTextComponent;
 
+        private Text _currentTargetText;
+
 
         private void OnEnable()
         {
@@ -42,16 +44,18 @@ namespace DQU.GUI
 
         private void OnShowDescription( ShowRoomDescriptionsEvent e )
         {
-            Text textGUI = ToggleAndRetrieveTextElement( e.TextLayout );
+            _currentTargetText = ToggleAndRetrieveTextElement( e.TextLayout );
 
             // Note that we must update the listener before changing the string reference.
             _localizeComponent.OnUpdateString.RemoveAllListeners();
-            _localizeComponent.OnUpdateString.AddListener( ( x ) => textGUI.text = x );
+            _localizeComponent.OnUpdateString.AddListener( LocalizationChanged ); //textGUI.text = x );
 
+            // Here we update the string, which should call the UnityAction delegate we just passed in.
+            // Why do it this way? If the Player were to change their Language 
+            // setting, it should ensure that the Room Description dynamically updates.
             _localizeComponent.StringReference = e.RoomDescription;
 
-            _revealTextComponent.TargetText = textGUI;
-            _revealTextComponent.BeginReveal( 1.0f, e.Delay );
+            _revealTextComponent.BeginReveal( _currentTargetText, 1.0f, e.Delay );
         }
 
 
@@ -87,6 +91,12 @@ namespace DQU.GUI
                     Debug.LogWarning( "Unsupported Room Description Layout enum", this );
                     return _screenBottomText;
             }
+        }
+
+
+        private void LocalizationChanged( string text )
+        {
+            _revealTextComponent.UpdateText( _currentTargetText, text );
         }
 
 

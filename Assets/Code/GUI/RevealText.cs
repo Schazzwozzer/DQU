@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using Archon.SwissArmyLib.Coroutines;
 
 namespace DQU.GUI
 {
@@ -14,20 +15,8 @@ namespace DQU.GUI
         [Range(0f, 10f)]
         public float SpeedMultiplier = 1f;
 
-        [SerializeField]
-        private Text _targetText;
-        public Text TargetText
-        {
-            get { return _targetText; }
-            set
-            {
-                Stop();
-                _targetText = value;
-            }
-        }
-
         private StringBuilder _stringBuilder = new StringBuilder();
-        private Coroutine _revealRoutine;
+        private int _revealRoutineID;
         private float _revealSpeed = 60f;   // Characters per second
 
         private float sentenceDelayMin = 0.3333333f,
@@ -35,78 +24,115 @@ namespace DQU.GUI
                       lineBreakDelayMin = 0.75f,
                       lineBreakDelayMax = 2f;
 
+        // These are class-scope so that they can be referenced and changed from outside of the coroutine.
+        private string _currentString;
+        private int _currentCharactersRevealed;
 
-        public void BeginReveal( string text, float speedMultiplier, float delay = 0f )
+
+        private void OnDisable()
         {
-            _revealRoutine = StartCoroutine( 
-                RevealTextRoutine( text, _revealSpeed * speedMultiplier, delay ) );
+            _currentString = default;
+            _currentCharactersRevealed = 0;
         }
 
 
-        public void BeginReveal( float speedMultiplier, float delay = 0f )
+        public void BeginReveal( Text targetGUI, float speedMultiplier, float delay = 0f )
         {
-            _revealRoutine = StartCoroutine(
-                RevealTextRoutine( TargetText.text, _revealSpeed * speedMultiplier, delay ) );
+            StartNewCoroutine( targetGUI, speedMultiplier, delay );
         }
 
 
-        private IEnumerator RevealTextRoutine( string text, float revealSpeed, float delay )
+        private void StartNewCoroutine( Text targetGUI, float speedMultiplier, float delay = 0f )
         {
-            _targetText.text = string.Empty;
+            BetterCoroutines.Stop( _revealRoutineID );
+
+            _revealRoutineID = BetterCoroutines.Start( RevealTextRoutine(
+                targetGUI, _revealSpeed * speedMultiplier, delay ) );
+        }
+
+
+        private IEnumerator RevealTextRoutine( Text targetGUI, float revealSpeed, float delay )
+        {
+            _currentCharactersRevealed = 0;
+            targetGUI.text = string.Empty;
+
+            yield return BetterCoroutines.WaitForOneFrame;
 
             if( delay > 0 )
-                yield return new WaitForSeconds( delay );
+                yield return BetterCoroutines.WaitForSeconds( delay );
 
-            int charactersRevealed = 0;
             float perCharDelay = 1f / revealSpeed;
-            WaitForSeconds perCharYield = new WaitForSeconds( perCharDelay );
-            WaitForSeconds sentenceYield = new WaitForSeconds( Mathf.Clamp( 
-                perCharDelay * 50f, sentenceDelayMin, sentenceDelayMax ) );
-            WaitForSeconds lineBreakYield = new WaitForSeconds( Mathf.Clamp( 
-                perCharDelay * 100f, lineBreakDelayMin, lineBreakDelayMax ) );
+            float sentenceDelay = Mathf.Clamp( perCharDelay * 50f, sentenceDelayMin, sentenceDelayMax );
+            float lineBreakDelay = Mathf.Clamp( perCharDelay * 100f, lineBreakDelayMin, lineBreakDelayMax );
 
-            while( charactersRevealed < text.Length )
+            while( _currentCharactersRevealed < _currentString.Length )
             {
-                _stringBuilder.Clear();
+                UpdateTextGUI( targetGUI );
 
-                _stringBuilder.Append( text.Substring( 0, charactersRevealed + 1 ) );
-                _stringBuilder.Append( "<color=#FFFFFF00>" );
-                _stringBuilder.Append( text.Substring( charactersRevealed + 1 ) );
-                _stringBuilder.Append( "</color>" );
-
-                _targetText.text = _stringBuilder.ToString();
-
-                if( charactersRevealed + 1 < text.Length )
+                if( _currentCharactersRevealed + 1 < _currentString.Length )
                 {
-                    char c = text[charactersRevealed];
-                    if( StringHelper.IsEndOfSentence( c, text[charactersRevealed + 1] ) )
+                    char c = _currentString[_currentCharactersRevealed];
+                    if( StringHelper.IsEndOfSentence( c, _currentString[_currentCharactersRevealed + 1] ) )
                     {
-                        yield return sentenceYield;
+                        yield return BetterCoroutines.WaitForSeconds( sentenceDelay );
                     }
                     else if( StringHelper.IsLineBreak( c ) )
                     {
-                        yield return lineBreakYield;
+                        yield return BetterCoroutines.WaitForSeconds( lineBreakDelay );
                         // Essentially fast-forward to the next actual letter.
                         // We don't want multiple line break delays at once.
-                        while( charactersRevealed + 1 < text.Length &&
-                            char.IsWhiteSpace( text[charactersRevealed + 1] ) )
+                        while( _currentCharactersRevealed + 1 < _currentString.Length &&
+                            char.IsWhiteSpace( _currentString[_currentCharactersRevealed + 1] ) )
                         {
-                            ++charactersRevealed;
+                            ++_currentCharactersRevealed;
                         }
                     }
                     else if( !StringHelper.IsSpace( c ) )
-                        yield return perCharYield;
+                        yield return BetterCoroutines.WaitForSeconds( perCharDelay );// perCharYield;
                 }
 
-                ++charactersRevealed;
+                ++_currentCharactersRevealed;
             }
+
+            targetGUI.text = _currentString;
         }
 
 
         public void Stop()
         {
-            if( _revealRoutine != null )
-                StopCoroutine( _revealRoutine );
+            BetterCoroutines.Stop( _revealRoutineID );
+        }
+
+
+        /// <summary>
+        /// Change the text that is being revealed.
+        /// </summary>
+        public void UpdateText( Text targetGUI, string text )
+        {
+            _currentString = text;
+            _currentCharactersRevealed = Math.Min( 0, Math.Min( _currentCharactersRevealed, _currentString.Length - 1 ) );
+
+            if( BetterCoroutines.IsRunning( _revealRoutineID ) )
+                UpdateTextGUI( targetGUI );
+            else
+                targetGUI.text = _currentString;
+        }
+
+
+        /// <summary>
+        /// Set the <see cref="Text"/> component's display string,
+        /// depending on the current progress of the Text Reveal routine.
+        /// </summary>
+        private void UpdateTextGUI( Text targetGUI )
+        {
+            _stringBuilder.Clear();
+
+            _stringBuilder.Append( _currentString.Substring( 0, _currentCharactersRevealed + 1 ) );
+            _stringBuilder.Append( "<color=#FFFFFF00>" );
+            _stringBuilder.Append( _currentString.Substring( _currentCharactersRevealed + 1 ) );
+            _stringBuilder.Append( "</color>" );
+
+            targetGUI.text = _stringBuilder.ToString();
         }
 
     }
