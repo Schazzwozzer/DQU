@@ -1,5 +1,5 @@
-#ifndef DQU_SPRITE_LIGHTING_INCLUDED
-#define DQU_SPRITE_LIGHTING_INCLUDED
+#ifndef DQU_2D_LIGHTING_INCLUDED
+#define DQU_2D_LIGHTING_INCLUDED
 
 // This is an edit of the code in Unity's URP 'CombinedShapeLightShared.hlsl" file (2020.2.1f1)
 // The most important change is that it returns a single luminance value, rather than a light color.

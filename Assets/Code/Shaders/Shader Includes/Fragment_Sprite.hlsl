@@ -16,11 +16,12 @@ half4 FragmentProgram_Sprite( Varyings i ) : SV_Target
     // Blue channel are color/tone masks.
     half4 main = SAMPLE_TEXTURE2D_LOD(_MainTex, sampler_MainTex, i.uv, 0);
 
+    float2 screenPos = i.positionNDC.xy;
     // Sample the required dither patterns.
-    half ditherScreen64 = ScreenDither64( i.lightingUV );
-    //half ditherScreen16 = ScreenDither16( i.lightingUV );
-    half ditherScreen4 = ScreenDither4( i.lightingUV );
-    //half ditherScreen2 = ScreenDither2( i.lightingUV );
+    half ditherScreen64 = ScreenDither64( screenPos );
+    //half ditherScreen16 = ScreenDither16( screenPos );
+    half ditherScreen4 = ScreenDither4( screenPos );
+    //half ditherScreen2 = ScreenDither2( screenPos );
     half ditherWorld64 = WorldDither64( i.positionWS.xy, 32 );
 
     // First let's calculate the base color of the material, which we'll just call 'albedo'.
@@ -33,7 +34,7 @@ half4 FragmentProgram_Sprite( Varyings i ) : SV_Target
 
     // Next up we'll incorporate lighting. Start by 
     // running the standard Unity lighting calculations.
-    half lighting = CalculateShapeLightShared( i.lightingUV );
+    half lighting = CalculateShapeLightShared( screenPos );
 
     // Take that lighting, currently a smooth gradient, and divide it 
     // into three tones: unlit, fully lit, and partially lit. The tones

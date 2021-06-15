@@ -332,6 +332,17 @@ namespace DQU.Editor
                 labelOne, propertyOne, labelTwo, propertyTwo, ValueType.String );
         }
 
+        public static void DrawTwoValueFieldColor( Rect position, GUIContent label, float labelWidth, bool lowWidth,
+                                                   GUIContent labelOne, SerializedProperty propertyOne,
+                                                   GUIContent labelTwo, SerializedProperty propertyTwo )
+        {
+            MultiValueFields.DrawTwoValueFieldManualWidth(
+                position, label, labelWidth,
+                lowWidth, 20f,
+                labelOne, propertyOne,
+                labelTwo, propertyTwo, ValueType.Color );
+        }
+
         public static void DrawTwoValueFieldEnum( Rect position, GUIContent label, float labelWidth, bool lowWidth,
                                                 GUIContent labelOne, SerializedProperty propertyOne,
                                                 GUIContent labelTwo, SerializedProperty propertyTwo )
@@ -350,11 +361,6 @@ namespace DQU.Editor
                 labelOne, propertyOne,
                 labelTwo, propertyTwo, ValueType.Bool );
         }
-
-
-
-
-
 
 
     }
