@@ -14,7 +14,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: LevelText_ToA1
   m_TableCollectionNameGuidString: 1e55789f9c2c6e24ab343a67386cd215
-  m_Entries: []
+  m_Entries:
+  - m_Id: 25109867401216
+    m_Key: toa1_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109938704384
+    m_Key: toa1_room01a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109955481600
+    m_Key: toa1_room01b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109955481601
+    m_Key: toa1_room02a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675904
+    m_Key: toa1_room02c
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675905
+    m_Key: toa1_room02b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675906
+    m_Key: toa1_room03a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675907
+    m_Key: toa1_room03b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675908
+    m_Key: toa1_room04
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870208
+    m_Key: toa1_room05a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870209
+    m_Key: toa1_room05b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870210
+    m_Key: toa1_room08a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870211
+    m_Key: toa1_room08b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870212
+    m_Key: toa1_room09
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870213
+    m_Key: toa1_room11a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870214
+    m_Key: toa1_room11b
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870215
+    m_Key: toa1_room14
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870216
+    m_Key: toa1_room15a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870217
+    m_Key: toa1_room15b
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

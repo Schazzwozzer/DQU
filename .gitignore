@@ -47,7 +47,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-# DQU-specific 
-
-!*/Shaders/Library/

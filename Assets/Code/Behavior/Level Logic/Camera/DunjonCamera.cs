@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using SDD.Events;
 using DQU.Events;
 
@@ -41,11 +40,19 @@ namespace DQU
             {
                 // Try to follow the player, as allowed by the current Room's Camera Track.
                 Vector2 goalPosition = _currentRoom.CameraTrack.GetNearestPosition( _player.transform.position );
-                goalPosition = ClampViewToRoomBounds( goalPosition, _currentRoom.Bounds );
+                goalPosition = _currentRoom.ClampViewToRoomBounds( goalPosition, _camera );
 #if TEST
                 goalPositionDebug = goalPosition;
 #endif
-                transform.position = new Vector3( goalPosition.x, goalPosition.y, transform.position.z );
+
+                // When the camera smoothly pans over a dithering pattern (used heavily 
+                // in our art style), it can cause an unpleasant 'shimmering' effect. 
+                // To prevent that, we will snap the camera's position snap to every other pixel. 
+                float snapSize = Constants.PixelSize * 2f;
+                transform.position = new Vector3(
+                    MathHelper.RoundToNearest( goalPosition.x, snapSize ),
+                    MathHelper.RoundToNearest( goalPosition.y, snapSize ),
+                    transform.position.z );
             }
         }
 
@@ -65,33 +72,7 @@ namespace DQU
         {
             _camera.backgroundColor = color;
         }
-
         
-        /// <summary>
-        /// Constrain goalPosition so that the camera's 
-        /// view remains wholly within the Room's bounds.
-        /// </summary>
-        private Vector2 ClampViewToRoomBounds( Vector2 goalPosition, Bounds bounds )
-        {
-            float halfCameraWidth = _camera.orthographicSize * _camera.aspect;
-
-            Vector2 positionalMin = new Vector2( 
-                bounds.min.x + halfCameraWidth,
-                bounds.min.y + _camera.orthographicSize );
-            Vector2 positionalMax = new Vector2(
-                bounds.max.x - halfCameraWidth,
-                bounds.max.y - _camera.orthographicSize );
-
-            // If the camera's view exceeds the Room's bounds, just use the bounds' center position.
-            if( positionalMin.x > positionalMax.x )
-                positionalMin.x = positionalMax.x = bounds.center.x;
-            if( positionalMin.y > positionalMax.y )
-                positionalMin.y = positionalMax.y = bounds.center.y;
-
-            return new Vector2(
-                Mathf.Clamp( goalPosition.x, positionalMin.x, positionalMax.x ),
-                Mathf.Clamp( goalPosition.y, positionalMin.y, positionalMax.y ) );
-        }
 
 #if TEST
         private Vector2 goalPositionDebug;

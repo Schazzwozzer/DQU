@@ -9,7 +9,7 @@ namespace DQU
     /// </summary>
     public class CameraTrack : MonoBehaviour
     {
-        [SerializeField] private Collider2D[] colliders;
+        [SerializeField] private Collider2D[] _colliders;
 
         private void Awake()
         {
@@ -18,12 +18,12 @@ namespace DQU
             gameObject.layer = LayerHelper.NoCollision;
 
             // Trim any empty elements from the Colliders array.
-            colliders = colliders.Where( x => x != null ).ToArray();
+            _colliders = _colliders.Where( x => x != null ).ToArray();
         }
 
         public Vector2 GetNearestPosition( Vector2 position )
         {
-            if( colliders.Length == 0 )
+            if( _colliders.Length == 0 )
                 return transform.position;
             else
                 return GetNearestPositionOnCollider( position );
@@ -32,20 +32,20 @@ namespace DQU
 
         private Vector2 GetNearestPositionOnCollider( Vector2 position )
         {
-            if( colliders.Length == 1 )
-                return colliders[0].ClosestPoint( position );
+            if( _colliders.Length == 1 )
+                return _colliders[0].ClosestPoint( position );
 
             // There are multiple colliders. Calculate nearest 
             // position for each, and return the nearest position of all.
 
-            // These variables will track the current 
+            // These variables will track the nearest thus far.
             Vector2 nearestPoint = new Vector2( float.MaxValue, float.MaxValue );
             float nearestDistanceSqr = float.MaxValue;
 
-            for( int i = 0; i < colliders.Length; ++i )
-                if( colliders[i] != null )
+            for( int i = 0; i < _colliders.Length; ++i )
+                if( _colliders[i] != null )
                 {
-                    Vector2 nearestPos = colliders[i].ClosestPoint( position );
+                    Vector2 nearestPos = _colliders[i].ClosestPoint( position );
 
                     // Early exit if the nearest position could not be any nearer.
                     if( nearestPos == position )
@@ -60,29 +60,11 @@ namespace DQU
                     }
                 }
             if( nearestDistanceSqr == float.MaxValue )
-                Debug.LogError( "There are multiple colliders, but no nearest position could be " );
+                Debug.LogError( "There are multiple colliders, but no nearest position could be derived.", this );
 
             return nearestPoint;
 
         }
-        /*
-        /// <summary>
-        /// Evaluate this Track's constituent colliders and 
-        /// </summary>
-        /// <returns></returns>
-        private TrackType EvaluateTrackType()
-        {
-            if( collider == null || !collider.enabled )
-                return TrackType.Point;
-            else if( collider is EdgeCollider2D )
-                return TrackType.Collider;
-            else
-            {
-                Debug.LogWarning( "Camera Track has invalid collider type (" + collider.GetType() + ")" );
-                return default;
-            }
-        }
-        */
 
         private void OnDrawGizmosSelected()
         {
@@ -94,7 +76,7 @@ namespace DQU
         /// </summary>
         public void DrawGizmo()
         {
-            if( colliders == null || colliders.Length == 0 )
+            if( _colliders == null || _colliders.Length == 0 )
             {
                 Gizmos.color = GizmosHelper.ColliderColor;
                 GizmosHelper.DrawCrosshairs2D( transform.position, 1f );

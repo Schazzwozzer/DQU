@@ -27,7 +27,7 @@ MonoBehaviour:
         m_ColumnsList:
         - id: 1
         - id: 2
-        m_ConnectedFile: 
+        m_ConnectedFile: E:/Projects/Unity/dqu/Assets/Temp/level_text_toa1.csv
     00000001:
       type: {class: KeyIdColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
       data:

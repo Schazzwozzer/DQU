@@ -17,6 +17,111 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 1e55789f9c2c6e24ab343a67386cd215, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 25109867401216
+    m_Localized: Temple of Apshai Level 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109938704384
+    m_Localized: The smooth stonework of the passageway floor shows that advanced
+      methods were used in its creation. A faint roaring sound can be heard from
+      the far end of the passage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109955481600
+    m_Localized: A skeleton sprawls on the floor just inside the door, a bony hand,
+      still clutching a rusty dagger, outstretched toward the door to safety.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109955481601
+    m_Localized: A stream runs through this natural stone chamber. A narrow landing
+      adjacent to the corridor at the north end of the chamber allows easy access
+      to the stream.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675904
+    m_Localized: In an alcove near one end of the landing there are many urns and
+      pots.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675905
+    m_Localized: The water is very clear and appears to be about three feet deep.
+      It flows in from a cut in the west wall and out under the north wall, near
+      the landing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675906
+    m_Localized: A finely carved and painted mural fills the east wall of the passage,
+      opposite the opening, depicting men tilling the soil. A roaring sound can be
+      heard from the north.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675907
+    m_Localized: A ransacked backpack rests against the mural.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109959675908
+    m_Localized: A smoothly carved passage with a native granite ceiling. Slippery
+      green moss fills every crack and crevice in the room, and the air is filled
+      with its heavy scent. An empty purse lies in the southwest corner. A droning
+      sound can be heard.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870208
+    m_Localized: A pond-filled room with a small landing to the south. The surface
+      of the sluggish water is covered with moss and a number of black lilies rest
+      peacefully upon the green matting.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870209
+    m_Localized: The water can be found to be about three feet deep and flows almost
+      imperceptibly in under the west wall and out under the east wall. Some of the
+      lilies can be reached from the landing.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870210
+    m_Localized: The floor and walls are smooth stone, the ceiling is native rock.
+      A loud roaring may be heard from the north.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870211
+    m_Localized: A humanoid skull rests on the floor in the middle of the passageway.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870212
+    m_Localized: A room of roughly hewn stone. The floor has been leveled by manmade
+      means, but the walls and ceiling are native rock. Cobwebs fill every crack
+      and hang from the ceiling, dancing slowly in the slight breeze. A cloying,
+      sweet odor fills the air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870213
+    m_Localized: 'A mist drifts into the corridor from the opening in the west wall,
+      and a deafening roar is heard. Moss covers the floor before the opening to
+      the west. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870214
+    m_Localized: A rusty sword lies on the mossy stone.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870215
+    m_Localized: A loud roaring sound may be heard from the west end of the passage.
+      A pyramid of medium-sized stones fills one corner of the north wall at the
+      east end of the corridor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870216
+    m_Localized: An irregular cave of native rock. The walls and floors are covered
+      with a heavy matting of multi-hued moss. The walls are brilliant reds, greens,
+      and blues, while the floor is a pastel yellow. A wooden box lies topless in
+      the middle of the cavern floor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25109963870217
+    m_Localized: Inside the box lies a well-made cloak. The material of the cloak
+      seems to shimmer in the torchlight.
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
