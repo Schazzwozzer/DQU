@@ -5,7 +5,7 @@
 #include "Assets/Code/Shaders/Library/BlendModes.hlsl"
 #include "Assets/Code/Shaders/Library/Dither.hlsl"
 #include "Assets/Code/Shaders/Library/NoiseHelpers.hlsl"
-#include "Assets/Code/Shaders/Library/Palette.hlsl"
+#include "Assets/Code/Shaders/Library/PaletteColors.hlsl"
 #include "Assets/Code/Shaders/Library/Official Edits/Lighting.hlsl"
 
 uniform float _NoiseSize;

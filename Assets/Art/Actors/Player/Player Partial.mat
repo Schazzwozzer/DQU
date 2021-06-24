@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Player Partial
   m_Shader: {fileID: 4800000, guid: 02a5ec1f90fd2a54e83232f6b2786990, type: 3}
-  m_ShaderKeywords: _PALETTE_COUNT_4
+  m_ShaderKeywords: _PALETTE_COUNT_4 _RECEIVE_LIGHTING
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -79,7 +79,7 @@ Material:
     - _HasColor3: 1
     - _HasColor4: 1
     - _QueueOffset: 0
-    - _ReceiveLighting: 0
+    - _ReceiveLighting: 1
     - _ReceiveShadows: 0
     - _SampleGI: 0
     - _Shininess: 0

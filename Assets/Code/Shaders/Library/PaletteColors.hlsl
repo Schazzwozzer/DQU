@@ -1,5 +1,5 @@
-#ifndef DQU_PALETTE_INCLUDED
-#define DQU_PALETTE_INCLUDED
+#ifndef DQU_PALETTE_COLORS_INCLUDED
+#define DQU_PALETTE_COLORS_INCLUDED
 
 void GetPaletteColors( 
     float paletteMaskValue, 

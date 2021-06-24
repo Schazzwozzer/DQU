@@ -17,7 +17,7 @@ struct Varyings
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
-Varyings VertexProgram_Sprite( Attributes i )
+Varyings VertexProgram( Attributes i )
 {
     Varyings o = (Varyings)0;
     UNITY_SETUP_INSTANCE_ID( i );

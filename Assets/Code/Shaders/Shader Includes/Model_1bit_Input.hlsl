@@ -36,17 +36,41 @@ CBUFFER_END
 #ifdef UNITY_DOTS_INSTANCING_ENABLED
     UNITY_DOTS_INSTANCING_START(MaterialPropertyMetadata)
         UNITY_DOTS_INSTANCED_PROP(float4, _BaseColor)
-        UNITY_DOTS_INSTANCED_PROP(float4, _ColorHigh)
-        UNITY_DOTS_INSTANCED_PROP(float4, _ColorLow)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color1High)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color1Low)
+    #if defined(_PALETTE_COUNT_4) || defined(_PALETTE_COUNT_3) || defined(_PALETTE_COUNT_2)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color2High)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color2Low)
+    #endif
+    #if defined(_PALETTE_COUNT_4) || defined(_PALETTE_COUNT_3)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color3High)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color3Low)
+    #endif
+    #if defined(_PALETTE_COUNT_4)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color4High)
+        UNITY_DOTS_INSTANCED_PROP(float4, _Color4Low)
+    #endif
         UNITY_DOTS_INSTANCED_PROP(float4, _ColorShadow)
         UNITY_DOTS_INSTANCED_PROP(float4, _SpecColor)
         UNITY_DOTS_INSTANCED_PROP(float , _Cutoff)
         UNITY_DOTS_INSTANCED_PROP(float , _Surface)
     UNITY_DOTS_INSTANCING_END(MaterialPropertyMetadata)
 
-    #define _BaseColor          UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__BaseColor)
-    #define _ColorHigh          UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__ColorHigh)
-    #define _ColorLow           UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__ColorLow)
+    #define _BaseColor           UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__BaseColor)
+    #define _Color1High          UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color1High)
+    #define _Color1Low           UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color1Low)
+#if defined(_PALETTE_COUNT_4) || defined(_PALETTE_COUNT_3) || defined(_PALETTE_COUNT_2)
+    #define _Color2High          UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color2High)
+    #define _Color2Low           UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color2Low)
+#endif
+#if defined(_PALETTE_COUNT_4) || defined(_PALETTE_COUNT_3)
+    #define _Color3High          UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color3High)
+    #define _Color3Low           UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color3Low)
+#endif
+#if defined(_PALETTE_COUNT_4)
+    #define _Color4High          UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color4High)
+    #define _Color4Low           UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__Color4Low)
+#endif
     #define _ColorShadow        UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__ColorShadow)
     #define _SpecColor          UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float4 , Metadata__SpecColor)
     #define _Cutoff             UNITY_ACCESS_DOTS_INSTANCED_PROP_FROM_MACRO(float  , Metadata__Cutoff)

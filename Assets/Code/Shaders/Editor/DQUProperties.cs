@@ -4,6 +4,13 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
 {
     public static class DQUProperties
     {
+        public static readonly string BaseTextureMap = "_BaseMap";
+        public static readonly int BaseTextureMapID = Shader.PropertyToID( BaseTextureMap );
+
+        /// <summary>Used by Sprite shaders, as the default texture map.</summary>
+        public static readonly string MainTextureMap = "_MainTex";
+        public static readonly int MainTextureMapID = Shader.PropertyToID( MainTextureMap );
+
         public static readonly string ReceiveLighting = "_ReceiveLighting";
         public static readonly int ReceiveLightingID = Shader.PropertyToID( ReceiveLighting );
 

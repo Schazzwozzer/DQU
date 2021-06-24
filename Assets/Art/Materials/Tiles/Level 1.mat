@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Floor (Temp)
+  m_Name: Level 1
   m_Shader: {fileID: 4800000, guid: 4276075d0ec6afe40a6dee6eed08b98d, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: _PALETTE_COUNT_2 _RECEIVE_LIGHTING
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -23,8 +23,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
+    - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 96c7f154c653a5747b25ff452b63b201, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 316e7b37bdc6a1341abcf1f4591cf79e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -32,10 +36,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _ColorStep: 0.5
     - _EnableExternalAlpha: 0
+    - _HasColor2: 1
+    - _HasColor3: 0
+    - _HasColor4: 0
     - _NoiseSize: 0.2
+    - _ReceiveLighting: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1High: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _Color1Low: {r: 0.6415094, g: 0.63466793, b: 0.60822356, a: 1}
+    - _Color2High: {r: 0.52156866, g: 0.49019608, b: 0.52156866, a: 1}
+    - _Color2Low: {r: 0.42352942, g: 0.45882353, b: 0.45882353, a: 1}
+    - _Color3High: {r: 0.8000001, g: 0.8000001, b: 0.8000001, a: 1}
+    - _Color3Low: {r: 0.6431373, g: 0.63529414, b: 0.60784316, a: 1}
+    - _Color4High: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _Color4Low: {r: 0.39999998, g: 0.39999998, b: 0.39999998, a: 1}
     - _ColorHigh: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     - _ColorLow: {r: 0.65, g: 0.65, b: 0.65, a: 1}
     - _ColorShadow: {r: 0.27, g: 0.27, b: 0.36, a: 1}

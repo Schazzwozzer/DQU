@@ -11,6 +11,28 @@ namespace DQU.Editor
     /// </summary>
     static public class MaterialEditorHelper
     {
+
+        // This method is copied directly from Unity's BaseShaderGUI. They decided to mark it internal.
+        /// <summary>
+        /// Materials can not have boolean properties, so this method 
+        /// will draw a Toggle field that uses a float property as a boolean.
+        /// </summary>
+        public static void DrawFloatToggleProperty( GUIContent styles, MaterialProperty prop )
+        {
+            if( prop == null )
+                return;
+
+            EditorGUI.BeginChangeCheck();
+            EditorGUI.showMixedValue = prop.hasMixedValue;
+            bool newValue = EditorGUILayout.Toggle( styles, prop.floatValue == 1 );
+            if( EditorGUI.EndChangeCheck() )
+                prop.floatValue = newValue ? 1.0f : 0.0f;
+            EditorGUI.showMixedValue = false;
+        }
+
+
+        #region Multi-value fields
+
         public enum ValueType { Int, Float, Color, Bool };
 
 
@@ -86,6 +108,8 @@ namespace DQU.Editor
                 labelOne, propertyOne,
                 labelTwo, propertyTwo, ValueType.Bool );
         }
+
+        #endregion
 
     }
 }
