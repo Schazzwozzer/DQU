@@ -1,34 +1,38 @@
-#ifndef DQU_SPRITE_PALETTE_FRAGMENT_INCLUDED
-#define DQU_SPRITE_PALETTE_FRAGMENT_INCLUDED
+#ifndef DQU_SPRITE_ENVIRONMENT_FRAGMENT_INCLUDED
+#define DQU_SPRITE_ENVIRONMENT_FRAGMENT_INCLUDED
 
+#include "Assets/Code/Shaders/Library/BlendModes.hlsl"
 #include "Assets/Code/Shaders/Library/Dither.hlsl"
 #include "Assets/Code/Shaders/Library/NoiseHelpers.hlsl"
 #include "Assets/Code/Shaders/Library/PaletteColors.hlsl"
 #include "Assets/Code/Shaders/Library/Official Edits/Lighting.hlsl"
 
-uniform float _NoiseSize;
-uniform float3 _NoiseOffset;
-
 
 half4 SampleMainTexture( float2 uv )
 {
     // Sample the main albedo/diffuse texture.
-    // Red channel attenuates blending between the high and low color tones.
-    // Green channel is a sort of ambient occlusion/shadow map.
+    // Red channel attenuates noise-based color blending.
+    // Green channel is detail/shadow map.
     // Blue channel are color/tone masks.
     return SAMPLE_TEXTURE2D_LOD(_MainTex, sampler_MainTex, uv, 0);
 }
 
 
 // Determine the material's base color.
-half3 CalculateAlbedo( half colorBlend, half colorMask, half ditherPattern )
+half3 CalculateAlbedo( half colorBlend, half colorMask, half ditherPattern, float3 positionWS )
 {
+    float2 noiseOffset = _NoiseSettings.xy;
+    float noiseScale = _NoiseSettings.z;
+
+    // Calculate a procedural perlin noise, which we will use for some subtle visual interest.
+    half noise = FractalPerlin2D( 4, positionWS.xy + noiseOffset, noiseScale );
+
+    // Factor the noise into the color blend and then convert to a 1-bit value.
+    colorBlend = step( BlendOverlay( colorBlend, noise ), ditherPattern );
+
     // Determine our two colors — the high tone and low tone.
     half3 lowColor, highColor;
     GetPaletteColors( colorMask, lowColor, highColor );
-
-    // Convert the color blend to a 1-bit value.
-    colorBlend = step( colorBlend, ditherPattern );
 
     return lerp( lowColor, highColor, colorBlend );
 }
@@ -46,7 +50,7 @@ half4 FragmentProgram_Lit( Varyings i ) : SV_Target
     half4 main = SampleMainTexture( i.uv );
 
     // Start with the base color of the material.
-    half3 albedo = CalculateAlbedo( main.r, main.b, ditherWorld64 );
+    half3 albedo = CalculateAlbedo( main.r, main.b, ditherWorld64, i.positionWS );
 
 #ifdef _RECEIVE_LIGHTING
     // Next up we'll incorporate lighting. Start by 
@@ -83,7 +87,7 @@ half4 FragmentProgram_Unlit( Varyings i ) : SV_Target
 
     half4 main = SampleMainTexture( i.uv );
 
-    half3 albedo = CalculateAlbedo( main.r * main.g, main.b, ditherWorld64 );
+    half3 albedo = CalculateAlbedo( main.r * main.g, main.b, ditherWorld64, i.positionWS );
 
     return half4( albedo.rgb, main.a );
 }

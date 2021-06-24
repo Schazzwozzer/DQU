@@ -20,6 +20,9 @@ namespace UnityEditor.Rendering.Universal.ShaderGUI
         public static readonly string Fresnel = "_Fresnel";
         public static readonly int FresnelID = Shader.PropertyToID( Fresnel );
 
+        public static readonly string NoiseSettings = "_NoiseSettings";
+        public static readonly int NoiseSettingsID = Shader.PropertyToID( NoiseSettings );
+
         // Support of paletted color
 
         public static readonly string HasColor2 = "_HasColor2";

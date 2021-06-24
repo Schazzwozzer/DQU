@@ -1,4 +1,4 @@
-Shader "DQU/Sprite"
+Shader "DQU/Sprite (Environment)"
 {
     Properties
     {
@@ -19,6 +19,8 @@ Shader "DQU/Sprite"
         _ColorStep("Step", Float) = 0.5
 
         _ColorShadow("Shadow Color", Color) = (0.27, 0.27, 0.36, 1.0)
+
+        _NoiseSettings("Noise Settings", Vector) = (0, 0, 1, 0)     // XY are positional offset, Z is scale
 
         [ToggleUI] _ReceiveLighting("Receive Lighting", Float) = 1.0
 
@@ -56,10 +58,10 @@ Shader "DQU/Sprite"
 
             #pragma shader_feature_local_fragment _ _RECEIVE_LIGHTING
             #pragma shader_feature_local_fragment _ _PALETTE_COUNT_2 _PALETTE_COUNT_3 _PALETTE_COUNT_4
-            
-            #include "Assets/Code/Shaders/Shader Includes/Sprite_Palette_Input.hlsl"
+
+            #include "Assets/Code/Shaders/Shader Includes/Sprite_Environment_Input.hlsl"
             #include "Assets/Code/Shaders/Shader Includes/Sprite_Vertex.hlsl"
-            #include "Assets/Code/Shaders/Shader Includes/Sprite_Palette_Fragment.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Sprite_Environment_Fragment.hlsl"
 
             ENDHLSL
         }
@@ -78,14 +80,14 @@ Shader "DQU/Sprite"
             #pragma vertex VertexProgram
             #pragma fragment FragmentProgram_Unlit
             
-            #include "Assets/Code/Shaders/Shader Includes/Sprite_Palette_Input.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Sprite_Environment_Input.hlsl"
             #include "Assets/Code/Shaders/Shader Includes/Sprite_Vertex.hlsl"
-            #include "Assets/Code/Shaders/Shader Includes/Sprite_Palette_Fragment.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Sprite_Environment_Fragment.hlsl"
 
             ENDHLSL
         }
         */
     }
     Fallback "Sprites/Default"
-    CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.SpritePaletteShaderGUI"
+    CustomEditor "UnityEditor.Rendering.Universal.ShaderGUI.SpriteEnvironmentShaderGUI"
 }
