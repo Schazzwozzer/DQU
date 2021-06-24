@@ -48,10 +48,6 @@ half4 FragmentProgram_Lit( Varyings i ) : SV_Target
 
     half4 main = SampleMainTexture( i.uv );
 
-    // Determine our two colors — the high tone and low tone.
-    half3 lowColor, highColor;
-    GetPaletteColors( main.b, lowColor, highColor );
-
     // Start with the base color of the material.
     half3 albedo = CalculateAlbedo( i.positionWS, main.b, ditherWorld64 );
 

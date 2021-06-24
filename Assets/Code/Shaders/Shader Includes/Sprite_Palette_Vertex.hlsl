@@ -26,8 +26,6 @@ Varyings VertexProgram( Attributes i )
     o.uv = TRANSFORM_TEX( i.uv, _MainTex );
 
     VertexPositionInputs positions = GetVertexPositionInputs( i.positionOS );
-    o.positionCS = positions.positionCS;// TransformObjectToHClip( v.positionOS );
-    o.positionWS = positions.positionWS;//TransformObjectToWorld( v.positionOS );
     o.positionCS = positions.positionCS;
     o.positionWS = positions.positionWS;
     o.positionNDC = positions.positionNDC;
