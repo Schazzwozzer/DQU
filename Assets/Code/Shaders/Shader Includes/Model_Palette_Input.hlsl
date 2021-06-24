@@ -1,5 +1,5 @@
-#ifndef DQU_MODEL_1BIT_INPUT_INCLUDED
-#define DQU_MODEL_1BIT_INPUT_INCLUDED
+#ifndef DQU_MODEL_PALETTE_INPUT_NCLUDED
+#define DQU_MODEL_PALETTE_INPUT_NCLUDED
 
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 //#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"

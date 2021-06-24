@@ -1,5 +1,5 @@
-#ifndef DQU_MODEL_1BIT_VERTEX_INCLUDED
-#define DQU_MODEL_1BIT_VERTEX_INCLUDED
+#ifndef DQU_MODEL_VERTEX_INCLUDED
+#define DQU_MODEL_VERTEX_INCLUDED
 
 // Access to GetViewForwardDir().
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"
@@ -24,7 +24,7 @@ struct Varyings
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
-Varyings VertexProgram_Model_1bit( Attributes i )
+Varyings VertexProgram( Attributes i )
 {
     Varyings o = (Varyings)0;
 

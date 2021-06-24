@@ -1,5 +1,5 @@
-#ifndef DQU_MODEL_1BIT_FRAGMENT_NCLUDED
-#define DQU_MODEL_1BIT_FRAGMENT_NCLUDED
+#ifndef DQU_MODEL_PALETTE_FRAGMENT_NCLUDED
+#define DQU_MODEL_PALETTE_FRAGMENT_NCLUDED
 
 #include "Assets/Code/Shaders/Library/DQUCommon.hlsl"
 #include "Assets/Code/Shaders/Library/BlendModes.hlsl"
@@ -11,7 +11,7 @@
 uniform float _NoiseSize;
 uniform float2 _NoiseOffset;
 
-half4 FragmentProgram_Model_1bit( Varyings i ) : SV_Target
+half4 FragmentProgram( Varyings i ) : SV_Target
 {
     // Sample the main albedo/diffuse texture.
     // Red channel is currently not used for this shader.

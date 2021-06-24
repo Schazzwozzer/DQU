@@ -1,5 +1,5 @@
-#ifndef FRAGMENT_SPRITE_INCLUDED
-#define FRAGMENT_SPRITE_INCLUDED
+#ifndef DQU_SPRITE_PALETTE_FRAGMENT_INCLUDED
+#define DQU_SPRITE_PALETTE_FRAGMENT_INCLUDED
 
 #include "Assets/Code/Shaders/Library/Dither.hlsl"
 #include "Assets/Code/Shaders/Library/NoiseHelpers.hlsl"

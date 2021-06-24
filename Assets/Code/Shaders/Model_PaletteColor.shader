@@ -109,12 +109,12 @@ Shader "DQU/Model"
             #pragma multi_compile USE_SHAPE_LIGHT_TYPE_2 __
             #pragma multi_compile USE_SHAPE_LIGHT_TYPE_3 __
 
-            #pragma vertex VertexProgram_Model_1bit
-            #pragma fragment FragmentProgram_Model_1bit
+            #pragma vertex VertexProgram
+            #pragma fragment FragmentProgram
 
-            #include "Assets/Code/Shaders/Shader Includes/Model_1bit_Input.hlsl"
-            #include "Assets/Code/Shaders/Shader Includes/Model_1bit_Vertex.hlsl"
-            #include "Assets/Code/Shaders/Shader Includes/Model_1bit_Fragment.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Model_Palette_Input.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Model_Vertex.hlsl"
+            #include "Assets/Code/Shaders/Shader Includes/Model_Palette_Fragment.hlsl"
             ENDHLSL
         }
     }

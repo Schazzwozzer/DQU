@@ -1,5 +1,5 @@
-#ifndef VERTEX_SPRITE_INCLUDED
-#define VERTEX_SPRITE_INCLUDED
+#ifndef DQU_SPRITE_VERTEX_INCLUDED
+#define DQU_SPRITE_VERTEX_INCLUDED
 
 struct Attributes
 {
@@ -28,6 +28,8 @@ Varyings VertexProgram( Attributes i )
     VertexPositionInputs positions = GetVertexPositionInputs( i.positionOS );
     o.positionCS = positions.positionCS;// TransformObjectToHClip( v.positionOS );
     o.positionWS = positions.positionWS;//TransformObjectToWorld( v.positionOS );
+    o.positionCS = positions.positionCS;
+    o.positionWS = positions.positionWS;
     o.positionNDC = positions.positionNDC;
 
     return o;
