@@ -32,7 +32,7 @@ MonoBehaviour:
     customBlendFactors:
       multiplicative: 0
       additive: 0
-  - name: Blend Style 2
+  - name: Subtractive Shadows
     maskTextureChannel: 0
     renderTextureScale: 0.5
     blendMode: 2
