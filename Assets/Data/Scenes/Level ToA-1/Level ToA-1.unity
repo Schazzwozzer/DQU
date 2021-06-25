@@ -1333,6 +1333,7 @@ GameObject:
   - component: {fileID: 168206932}
   - component: {fileID: 168206933}
   - component: {fileID: 168206931}
+  - component: {fileID: 168206934}
   m_Layer: 0
   m_Name: Room 01
   m_TagString: Untagged
@@ -1403,7 +1404,19 @@ MonoBehaviour:
   - {fileID: 792186266}
   OnRoomEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 168206934}
+        m_TargetAssemblyTypeName: DQU.Art.TriggerAtmospherics, Assembly-CSharp
+        m_MethodName: ChangeAtmospherics
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &168206933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1427,6 +1440,20 @@ MonoBehaviour:
   _delayInSeconds: 0.4
   _textLayout: 1
   _activationType: 2
+--- !u!114 &168206934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168206929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29236f1b9a8a51a42a8e37d393971a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeShadowColor: 1
+  _shadowColor: {r: 0.27058825, g: 0.27058825, b: 0.36078432, a: 1}
 --- !u!43 &172547807
 Mesh:
   m_ObjectHideFlags: 0
@@ -3376,6 +3403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370993273}
   - component: {fileID: 370993272}
+  - component: {fileID: 370993274}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -3415,6 +3443,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370993274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370993271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ec0e202242f6f41ae0409a8b222c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useShadowColor: 1
+  _targets:
+  - {fileID: 1904021243}
+  - {fileID: 2142767642}
+  - {fileID: 792186266}
+  - {fileID: 265390894}
+  - {fileID: 1216211044}
+  - {fileID: 622205657}
 --- !u!1 &404535261
 GameObject:
   m_ObjectHideFlags: 0

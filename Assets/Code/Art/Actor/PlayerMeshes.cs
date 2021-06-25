@@ -3,19 +3,21 @@ using UnityEngine;
 
 namespace DQU.Art
 {
-
+    /// <summary>
+    /// Allows multiple meshes to use one single skeleton rig for animation.
+    /// </summary>
     public class PlayerMeshes : MonoBehaviour
     {
-        // The goal of this component is to allow multiple meshes
-        // to use one single skeleton rig for their animation.
-
-
         [SerializeField]
         private Transform _rig;
 
         [SerializeField]
         private Transform _rigRootBone;
 
+        [SerializeField]
+        private PassToShader _passToShader;
+
+        [Header( "Prefabs" )]
         [SerializeField]
         private GameObject _bodyPrefab;
 
@@ -37,6 +39,8 @@ namespace DQU.Art
                 SkinnedMeshRenderer bodyMesh = GameObject.Instantiate(
                     _bodyPrefab.GetComponentInChildren<SkinnedMeshRenderer>().gameObject, Vector3.zero, Quaternion.identity, this.transform ).GetComponent<SkinnedMeshRenderer>();
                 SwitchToNewSkeleton( bodyMesh, _rig );
+                if( _passToShader )
+                    _passToShader.AddTarget( bodyMesh );
             }
 
             if( _clothingPrefab )
@@ -44,8 +48,9 @@ namespace DQU.Art
                 SkinnedMeshRenderer armorMesh = GameObject.Instantiate<SkinnedMeshRenderer>(
                     _clothingPrefab.GetComponentInChildren<SkinnedMeshRenderer>(), Vector3.zero, Quaternion.identity, this.transform );
                 SwitchToNewSkeleton( armorMesh, _rig );
+                if( _passToShader )
+                    _passToShader.AddTarget( armorMesh );
             }
-            //_rig.localRotation = Quaternion.identity;
         }
 
 

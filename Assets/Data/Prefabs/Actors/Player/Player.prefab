@@ -165,6 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5343751064946258012}
   - component: {fileID: 825580725685290256}
+  - component: {fileID: 2323037650569509438}
   m_Layer: 6
   m_Name: Art
   m_TagString: Untagged
@@ -199,6 +200,18 @@ SortingGroup:
   m_SortingLayerID: -2140684113
   m_SortingLayer: 1
   m_SortingOrder: 10
+--- !u!114 &2323037650569509438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290941920266607462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad96a3e72db7b24991f9a7fe3f6dfad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &299585284334848244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,6 +1338,7 @@ GameObject:
   - component: {fileID: 7131554146378517819}
   - component: {fileID: 2044591518303139797}
   - component: {fileID: 6558346706300496754}
+  - component: {fileID: 5628908152634378275}
   m_Layer: 6
   m_Name: Mesh and Rig
   m_TagString: Untagged
@@ -1362,6 +1376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rig: {fileID: 4684059983054755920}
   _rigRootBone: {fileID: 5738494410810863807}
+  _passToShader: {fileID: 5628908152634378275}
   _bodyPrefab: {fileID: 0}
   _clothingPrefab: {fileID: 1166100485765432768, guid: 0b0087c692bb5c84b8a79c3c4be54bfc, type: 3}
 --- !u!95 &2044591518303139797
@@ -1398,6 +1413,21 @@ MonoBehaviour:
   _animatorComponent: {fileID: 2044591518303139797}
   _locomotionComponent: {fileID: 385197573060112181}
   _playerFacingTransform: {fileID: 2793269264379958604}
+--- !u!114 &5628908152634378275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3705624163674612075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ec0e202242f6f41ae0409a8b222c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useShadowColor: 1
+  _targets:
+  - {fileID: 5037235309285814926}
 --- !u!1 &3890675273276199178
 GameObject:
   m_ObjectHideFlags: 0
