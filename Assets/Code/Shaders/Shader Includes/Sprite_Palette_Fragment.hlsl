@@ -1,7 +1,9 @@
 #ifndef DQU_SPRITE_PALETTE_FRAGMENT_INCLUDED
 #define DQU_SPRITE_PALETTE_FRAGMENT_INCLUDED
 
+#include "Assets/Code/Shaders/Library/BlendModes.hlsl"
 #include "Assets/Code/Shaders/Library/Dither.hlsl"
+#include "Assets/Code/Shaders/Library/Math.hlsl"
 #include "Assets/Code/Shaders/Library/NoiseHelpers.hlsl"
 #include "Assets/Code/Shaders/Library/PaletteColors.hlsl"
 #include "Assets/Code/Shaders/Library/Official Edits/Lighting.hlsl"
@@ -39,8 +41,7 @@ half4 FragmentProgram_Lit( Varyings i ) : SV_Target
 {
     float2 screenPos = i.positionNDC.xy;
     // Sample the required dither patterns.
-    half ditherScreen64 = ScreenDither64( screenPos );
-    half ditherScreen4 = ScreenDither4( screenPos );
+    half ditherWorld16 = WorldDither16( i.positionWS.xy, 32 );
     half ditherWorld64 = WorldDither64( i.positionWS.xy, 32 );
 
     half4 main = SampleMainTexture( i.uv );
@@ -53,19 +54,18 @@ half4 FragmentProgram_Lit( Varyings i ) : SV_Target
     // running the standard Unity lighting calculations.
     half lighting = CalculateShapeLightShared( screenPos );
 
-    // Take that lighting, currently a smooth gradient, and divide it 
-    // into three tones: unlit, fully lit, and partially lit. The tones
-    // are blended using a dithering pattern.
-    half ditheredLighting = 
-        (step( ditherScreen4, smoothstep( 0.1, 0.3, lighting )) + 
-         step( ditherScreen64, smoothstep( 0.6, 0.8, lighting ))) / 2;
+    // Doing a few things here. First, we take the outer edge of the lighting, and blend it
+    // with the texture's 'detail' map. Using this particular Blend function gives the shadows 
+    // a nice, inky quality. Then we turn dither it, resulting in a 1-bit black & white value.
+    half litSurface = step( ditherWorld16, BlendLinearBurn(main.g, smoothstep( 0.0, 0.5, lighting )));
+    // Do that again, for the more strongly lit pixels, and add it to the previous result.
+    litSurface += step( ditherWorld64, BlendLinearBurn( main.g, remap01( 0.5, 1.0, lighting )));
+    // Then halve it all, resulting in three potential values: 0, 0.5, and 1.
+    litSurface *= 0.5h;
 
-    // I want lighting to attenuate or "blow out" the detail 
-    // texture, so they're multiplied together, then dithered 
-    // and added to the dithered lighting we just calculated.
-    lighting = step( ditherScreen64, main.g * lighting ) * ditheredLighting;
+    lighting = litSurface;
 #else
-    half lighting = step( ditherScreen64, main.g );
+    half lighting = step( ditherWorld64, main.g );
 #endif
 
     // Combine albedo with lighting/shadows for final color.
