@@ -56,7 +56,7 @@ float WorldDither16( float2 positionWS, int pixelsPerUnit )
 
 float WorldDither64( float2 positionWS, int pixelsPerUnit )
 {
-    int2 uv = int2( mod( positionWS * 32, 8.0 ) );
+    int2 uv = int2( mod( positionWS * pixelsPerUnit, 8.0 ) );
     return bayer64[uv.x + uv.y * 8];
 }
 
