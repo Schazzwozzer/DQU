@@ -15,13 +15,15 @@ namespace DQU
 
         /// <summary>Instantiate the Player Prefab at this Spawn Point's position.</summary>
         /// <param name="parent">The parent Transform for the new Player instance.</param>
-        public override void Spawn( Transform parent )
+        public override Transform Spawn( Transform parent )
         {
             Transform player = Instantiate( _prefab, parent, false );
             player.localPosition = transform.position;
             player.rotation = Quaternion.identity;
 
             EventManager.Instance.Raise( new PlayerSpawnedEvent( player ) );
+
+            return player;
         }
 
     }

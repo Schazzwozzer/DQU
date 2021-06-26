@@ -10,7 +10,7 @@ namespace DQU
     {
         /// <summary>Instantiate the Prefab at this Spawn Point's position.</summary>
         /// <param name="parent">The parent Transform for the new instance.</param>
-        public abstract void Spawn( Transform parent );
+        public abstract Transform Spawn( Transform parent );
 
     }
 }
