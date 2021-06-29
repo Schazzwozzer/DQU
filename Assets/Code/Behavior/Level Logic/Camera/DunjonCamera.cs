@@ -45,14 +45,7 @@ namespace DQU
                 goalPositionDebug = goalPosition;
 #endif
 
-                // When the camera smoothly pans over a dithering pattern (used heavily 
-                // in our art style), it can cause an unpleasant 'shimmering' effect. 
-                // To prevent that, we will snap the camera's position snap to every other pixel. 
-                float snapSize = Constants.PixelSize * 2f;
-                transform.position = new Vector3(
-                    MathHelper.RoundToNearest( goalPosition.x, snapSize ),
-                    MathHelper.RoundToNearest( goalPosition.y, snapSize ),
-                    transform.position.z );
+                transform.position = new Vector3( goalPosition.x, goalPosition.y, transform.position.z );
             }
         }
 
