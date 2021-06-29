@@ -15,6 +15,18 @@ public static class Constants
     /// <summary>
     /// The size of a single pixel in world space.
     /// </summary>
-    public static float PixelSize { get { return 1f / PixelsPerUnit; } }
+    public static float PixelSize { get; private set; }
+
+    /// <summary>
+    /// Half the size of a single pixel in world space.
+    /// </summary>
+    public static float HalfPixelSize { get; private set; }
+
+
+    static Constants()
+    {
+        PixelSize = 1f / PixelsPerUnit;
+        HalfPixelSize = PixelSize * 0.5f;
+    }
 
 }
