@@ -1,0 +1,26 @@
+{
+    "name": "DQUAssembly",
+    "rootNamespace": "",
+    "references": [
+        "EventManagerAssembly",
+        "Unity.InputSystem",
+        "Unity.Localization",
+        "Unity.ResourceManager",
+        "Unity.ScriptableBuildPipeline",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Unity.Localization.ThirdParty.Editor.dll",
+        "Archon.SwissArmyLib.dll",
+        "Archon.SwissArmyLib.Editor.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

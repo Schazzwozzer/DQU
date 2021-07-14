@@ -1,0 +1,31 @@
+{
+    "name": "DQUEditorAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9395f2260b9bdfa438b1772bd257edd0",
+        "GUID:2e77701fe0ceda44fb763f03ee704c37",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:46a67ded66a63de48b9329c593fc08de",
+        "GUID:3eae0364be2026648bf74846acb8a731",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:ab67fb10353d84448ac887a7367cbda8",
+        "GUID:c579267770062bf448e75eb160330b7f",
+        "GUID:c5ecc461727906345a35491a0440694f",
+        "GUID:be0903cd8e1546f498710afdc59db5eb",
+        "GUID:c3352a8bbbe14fb4ab52ae7bfff927ea",
+        "GUID:bd2461be96e5f744bbe6bdbc5276eb61",
+        "GUID:2543b18169f9e4044a266a0bf35fe4cf"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

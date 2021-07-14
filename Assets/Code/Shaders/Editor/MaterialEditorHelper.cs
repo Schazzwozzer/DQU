@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System;
 
@@ -41,7 +40,7 @@ namespace DQU.Editor
                                                    GUIContent labelTwo, MaterialProperty propertyTwo,
                                                    GUIContent labelThree, MaterialProperty propertyThree )
         {
-            MultiValueFields.DrawThreeValueFieldAutoWidth( position, label, labelWidth, lowWidth,
+            MultiValueFieldsMaterial.DrawThreeValueFieldAutoWidth( position, label, labelWidth, lowWidth,
                 labelOne, propertyOne, labelTwo, propertyTwo, labelThree, propertyThree, ValueType.Int );
         }
 
@@ -51,7 +50,7 @@ namespace DQU.Editor
                                                      GUIContent labelTwo, MaterialProperty propertyTwo,
                                                      GUIContent labelThree, MaterialProperty propertyThree )
         {
-            MultiValueFields.DrawThreeValueFieldAutoWidth( position, label, labelWidth, lowWidth,
+            MultiValueFieldsMaterial.DrawThreeValueFieldAutoWidth( position, label, labelWidth, lowWidth,
                 labelOne, propertyOne, labelTwo, propertyTwo, labelThree, propertyThree, ValueType.Float );
         }
 
@@ -60,7 +59,7 @@ namespace DQU.Editor
                                                     GUIContent labelTwo, MaterialProperty propertyTwo,
                                                     GUIContent labelThree, MaterialProperty propertyThree )
         {
-            MultiValueFields.DrawThreeValueFieldManualWidth(
+            MultiValueFieldsMaterial.DrawThreeValueFieldManualWidth(
                 position, label, labelWidth,
                 lowWidth, 20f,
                 labelOne, propertyOne,
@@ -75,7 +74,7 @@ namespace DQU.Editor
                                                    GUIContent labelOne, MaterialProperty propertyOne,
                                                    GUIContent labelTwo, MaterialProperty propertyTwo )
         {
-            MultiValueFields.DrawTwoValueFieldAutoWidth( position, label, labelWidth, lowWidth,
+            MultiValueFieldsMaterial.DrawTwoValueFieldAutoWidth( position, label, labelWidth, lowWidth,
                 labelOne, propertyOne, labelTwo, propertyTwo, ValueType.Float );
         }
 
@@ -83,7 +82,7 @@ namespace DQU.Editor
                                                  GUIContent labelOne, MaterialProperty propertyOne,
                                                  GUIContent labelTwo, MaterialProperty propertyTwo )
         {
-            MultiValueFields.DrawTwoValueFieldAutoWidth(
+            MultiValueFieldsMaterial.DrawTwoValueFieldAutoWidth(
                 position, label, labelWidth, lowWidth,
                 labelOne, propertyOne, labelTwo, propertyTwo, ValueType.Int );
         }
@@ -92,7 +91,7 @@ namespace DQU.Editor
                                                    GUIContent labelOne, MaterialProperty propertyOne,
                                                    GUIContent labelTwo, MaterialProperty propertyTwo )
         {
-            MultiValueFields.DrawTwoValueFieldAutoWidth(
+            MultiValueFieldsMaterial.DrawTwoValueFieldAutoWidth(
                 position, label, labelWidth, lowWidth, 
                 labelOne, propertyOne,
                 labelTwo, propertyTwo, ValueType.Color );
@@ -102,7 +101,7 @@ namespace DQU.Editor
                                                   GUIContent labelOne, MaterialProperty propertyOne,
                                                   GUIContent labelTwo, MaterialProperty propertyTwo )
         {
-            MultiValueFields.DrawTwoValueFieldManualWidth(
+            MultiValueFieldsMaterial.DrawTwoValueFieldManualWidth(
                 position, label, labelWidth,
                 lowWidth, 20f,
                 labelOne, propertyOne,
