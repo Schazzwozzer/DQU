@@ -9,7 +9,7 @@ namespace DQU.Editor
     // the methods here are broken out into their own class for tidiness' sake.
 
     /// <summary>
-    /// Static class containing methods for drawing multiple properties on a single Editor line.
+    /// Static class containing methods for drawing multiple material properties on a single Editor line.
     /// </summary>
     static public class MultiValueFieldsMaterial
     {
