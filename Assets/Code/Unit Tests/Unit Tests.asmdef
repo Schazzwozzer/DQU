@@ -6,7 +6,9 @@
         "UnityEditor.TestRunner",
         "DQUAssembly"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
